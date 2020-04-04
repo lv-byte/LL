@@ -48,6 +48,7 @@ int main()
 				b = rand() % 100 + 1;
 			}
 			printf("%d × %d = ", a, b);
+				
 			break;
 		case 3:
 			while (a > 100 || b > 100 || (a * b == 0))   //保证被除数小于100且除数不为0
@@ -80,4 +81,5 @@ int main()
 	/**< 输出答对题数和得分 */
 	printf("答对 %d 题，得分：%d\n", sum, sum * 10);
 	return 0;
+	
 }
