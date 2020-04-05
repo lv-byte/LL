@@ -38,9 +38,9 @@ public:
 	afx_msg void OnEnChangeEdit2();
 	afx_msg void OnEnChangeEdit3();
 	afx_msg void OnBnClickedCount();
-	UINT num1;
-	UINT num2;
-	UINT out;
+	UINT num1;//操作数一、编辑框1
+	UINT num2;//操作数二、编辑框2
+	UINT out;//输出、编辑框3
 
 	CString edit1[100];
 	CString edit2[100];
@@ -53,4 +53,16 @@ public:
 	afx_msg void OnBnClickedOk();
 
 	int count(CString sign,int a,int b);
+	afx_msg void OnBnClickedStart();
+
+	int i = 0;//统计题目数量
+	int j = 0;//统计答对题目数量
+	int sum;//答对题目之和
+	int d;//正确答案
+	int t;//输入答案
+	int a;//num1
+	int b;//num2
+	int is=0;
+	afx_msg void OnEnChangeEdit4();
+	afx_msg void OnBnClickedRule();
 };

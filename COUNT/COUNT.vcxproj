@@ -185,12 +185,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CADD.h" />
+    <ClInclude Include="CANS.h" />
     <ClInclude Include="CDIV.h" />
     <ClInclude Include="CMUL.h" />
     <ClInclude Include="COUNT.h" />
     <ClInclude Include="COUNTDlg.h" />
+    <ClInclude Include="CRIGHT.h" />
+    <ClInclude Include="CRULE.h" />
     <ClInclude Include="CSUB.h" />
     <ClInclude Include="CWARN.h" />
+    <ClInclude Include="CWRONG.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
@@ -198,12 +202,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CADD.cpp" />
+    <ClCompile Include="CANS.cpp" />
     <ClCompile Include="CDIV.cpp" />
     <ClCompile Include="CMUL.cpp" />
     <ClCompile Include="COUNT.cpp" />
     <ClCompile Include="COUNTDlg.cpp" />
+    <ClCompile Include="CRIGHT.cpp" />
+    <ClCompile Include="CRULE.cpp" />
     <ClCompile Include="CSUB.cpp" />
     <ClCompile Include="CWARN.cpp" />
+    <ClCompile Include="CWRONG.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
