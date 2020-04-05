@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 // CANS 对话框
