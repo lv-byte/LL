@@ -48,6 +48,18 @@
     <ClInclude Include="CDIV.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CANS.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRIGHT.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CWRONG.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CRULE.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="COUNT.cpp">
@@ -72,6 +84,18 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CDIV.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CANS.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CRIGHT.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CWRONG.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CRULE.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

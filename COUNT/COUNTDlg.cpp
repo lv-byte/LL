@@ -13,10 +13,15 @@
 #include "CSUB.h"
 #include "CMUL.h"
 #include "CDIV.h"
+#include "CANS.h"
+#include "CRIGHT.h"
+#include "CWRONG.h"
+#include "CRULE.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
 
 
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
@@ -86,6 +91,10 @@ BEGIN_MESSAGE_MAP(CCOUNTDlg, CDialogEx)
 	ON_EN_CHANGE(IDC_EDIT3, &CCOUNTDlg::OnEnChangeEdit3)
 	ON_BN_CLICKED(IDC_COUNT, &CCOUNTDlg::OnBnClickedCount)
 	ON_BN_CLICKED(IDOK, &CCOUNTDlg::OnBnClickedOk)
+	
+	ON_BN_CLICKED(IDC_START, &CCOUNTDlg::OnBnClickedStart)
+	ON_EN_CHANGE(IDC_EDIT4, &CCOUNTDlg::OnEnChangeEdit4)
+	ON_BN_CLICKED(IDC_RULE, &CCOUNTDlg::OnBnClickedRule)
 END_MESSAGE_MAP()
 
 
@@ -225,51 +234,72 @@ void CCOUNTDlg::OnEnChangeEdit3()
 void CCOUNTDlg::OnBnClickedCount()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	num1=GetDlgItemInt(IDC_EDIT1,NULL,1);
-	num2=GetDlgItemInt(IDC_EDIT2,NULL,1);
-
 	CWARN warning;
+	CRIGHT right;
+	CWRONG wrong;
 
-	if (num1 < 0 || num1>100 || num2 > 100 || num2 < 0) {
+	if (is == 0) { 
 		warning.DoModal();
+		return; 
 	}
 
-	nindex = signbox.GetCurSel();
-	signbox.GetLBText(nindex,countsign);
+
+	//nindex = signbox.GetCurSel();
+	//signbox.GetLBText(nindex,countsign);
 	//GetDlgItem(IDC_EDIT3)->SetWindowText(countsign);
 
-	int output;
-	output = count(countsign, num1, num2);
+	t=GetDlgItemInt(IDC_EDIT3);
+	if (d==t) {
+		j++;
+		right.DoModal();
+	}
+	else {
+		wrong.DoModal();
+	}
+
+	SetDlgItemInt(IDC_EDIT1, 0, 1);
+	SetDlgItemInt(IDC_EDIT2, 0, 1);
+
+	//GetDlgItem(IDC_EDIT4)->SetWindowTextW(edit3);
+
 
 	CADD add;
 	CSUB sub;
 	CMUL mul;
 	CDIV div;
+	CANS ans;
+
+	if (i==10) {
+		SetDlgItemInt(IDC_EDIT4, j, 1);
+		ans.DoModal();
+	}
+
 
 
 	//使用switch函数出现无法正确选择的错误，但out的结果是符合预期的.错误原因out为UINT型，所以自动识别别d>=0，故一直错过了switch选择函数，因使用int数据代替，最后赋值到out
+	//之前由于题目理解错误，以下部分在修改后不会有实际用处。
+	/*
 	switch (output) {
 	case -1: add.DoModal();
 	case -2: sub.DoModal();
 	case -3: mul.DoModal();
 	case -4: div.DoModal();
 	}
-	
+	*/
 	//out=-4
-	if (output >= 0) {
-		out = output;
-		SetDlgItemInt(IDC_EDIT3, out, 1);
-	}
+
+	is = 0;
 	
 }
 
-
+//并未使用
 void CCOUNTDlg::OnBnClickedOk()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CDialogEx::OnOK();
 }
 
+/* 之前用来验证的计算函数，经过讨论，第二次修改后放弃使用，暂留
 int CCOUNTDlg::count(CString sign, int a, int b)
 {
 	int d=-5;
@@ -305,4 +335,103 @@ int CCOUNTDlg::count(CString sign, int a, int b)
 		
 	
 	return d;
+}
+*/
+
+
+void CCOUNTDlg::OnBnClickedStart()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	
+	i++;
+	is = 1;
+	srand(time(0)); 
+	SetDlgItemInt(IDC_EDIT4, 0, 1);
+	
+		a = rand() % 100 + 1;
+		b = rand() % 100 + 1;
+		nindex = rand() % 4;     
+
+		switch (nindex)
+		{
+		case 0:
+			while ((d = a + b) > 100)    
+			{
+				a = rand() % 100 + 1;
+				b = rand() % 100 + 1;
+			}
+			signbox.SetCurSel(nindex);
+			SetDlgItemInt(IDC_EDIT1, a, 1);
+			SetDlgItemInt(IDC_EDIT2, b, 1);
+			break;
+		case 1:
+			while (a > 100 || b > 100) 
+			{
+				a = rand() % 100 + 1;
+				b = rand() % 100 + 1;
+			}
+			if (a < b)             
+			{
+				d = a;
+				a = b;
+				b = d;
+			}
+			d = a - b;
+			signbox.SetCurSel(nindex);
+			SetDlgItemInt(IDC_EDIT1, a, 1);
+			SetDlgItemInt(IDC_EDIT2, b, 1);
+			break;
+		case 2:
+			while ((d = a * b) > 100)    
+			{
+				a = rand() % 100 + 1;
+				b = rand() % 100 + 1;
+			}
+			signbox.SetCurSel(nindex);
+			SetDlgItemInt(IDC_EDIT1, a, 1);
+			SetDlgItemInt(IDC_EDIT2, b, 1);
+			break;
+		case 3:
+			while (a > 100 || b > 100 || (a * b == 0))  
+			{
+				a = rand() % 100 + 1;
+				b = rand() % 100 + 1;
+			}
+			if (a < b)           
+			{
+				d = a;
+				a = b;
+				b = d;
+			}
+			a = (a / b) * b;      
+			d = a / b;
+			signbox.SetCurSel(nindex);
+			SetDlgItemInt(IDC_EDIT1, a, 1);
+			SetDlgItemInt(IDC_EDIT2, b, 1);
+			break;
+		}
+}
+
+
+
+
+
+
+
+void CCOUNTDlg::OnEnChangeEdit4()
+{
+	// TODO:  如果该控件是 RICHEDIT 控件，它将不
+	// 发送此通知，除非重写 CDialogEx::OnInitDialog()
+	// 函数并调用 CRichEditCtrl().SetEventMask()，
+	// 同时将 ENM_CHANGE 标志“或”运算到掩码中。
+
+	// TODO:  在此添加控件通知处理程序代码
+}
+
+
+void CCOUNTDlg::OnBnClickedRule()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CRULE rule;
+	rule.DoModal();
 }

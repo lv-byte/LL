@@ -1,4 +1,4 @@
-﻿// CANS.cpp: 实现文件
+// CANS.cpp: 实现文件
 //
 
 #include "pch.h"
